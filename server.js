@@ -1,23 +1,50 @@
 /********************************************************************************
 
-* WEB322 – Assignment 04
+* WEB322 – Assignment 05
 * 
 * I declare that this assignment is my own work in accordance with Seneca's
 * Academic Integrity Policy:
 * 
 * https://www.senecacollege.ca/about/policies/academic-integrity-policy.html
 * 
-* Name: Sasawat Yimleang Student ID: 114036221 Date: November 7, 2023
+* Name: Sasawat Yimleang Student ID: 114036221 Date: ////////////////////////////////////
 *
 * Published URL: https://calm-gold-moose-shoe.cyclic.app
 *
 ********************************************************************************/
 
-const express = require("express"); // "require" the Express module
-const app = express(); // obtain the "app" object
 const HTTP_PORT = process.env.PORT || 3000; // assign a port
+const express = require("express"); // "require" the Express module
+const bodyParser = require('body-parser');
 const legoSets = require("./modules/legoSets");
 const path = require('path');
+const Sequelize = require('sequelize');
+require('dotenv').config();
+
+const app = express(); // obtain the "app" object
+app.use(bodyParser.urlencoded({ extended: true })); // using urlencoded form data
+
+// set up sequelize to point to our postgres database
+const sequelize = new Sequelize(
+    process.env.DB_DATABASE, 
+    process.env.DB_USER, 
+    process.env.DB_PASSWORD, {
+        host: 'ep-yellow-salad-27925306-pooler.us-east-2.aws.neon.tech',
+        dialect: 'postgres',
+        port: 5432,
+        dialectOptions: {
+        ssl: { rejectUnauthorized: false },
+        },
+  });
+  
+  sequelize
+    .authenticate()
+    .then(() => {
+      console.log('Connection has been established successfully.');
+    })
+    .catch((err) => {
+      console.log('Unable to connect to the database:', err);
+    });
 
 // Set EJS as the view engine
 app.set('view engine', 'ejs');
@@ -50,7 +77,6 @@ app.get("/about", (req, res) => {
 // GET "/lego/sets"
 app.get("/lego/sets", (req, res) => {
 
-
     const theme = req.query.theme;
 
     // If there is a "theme" query parameter present, respond with Lego data for that theme
@@ -60,7 +86,7 @@ app.get("/lego/sets", (req, res) => {
             res.render("sets", { sets: sets });
         })
         .catch(error => {
-            res.status(404).render("404", { message: "Lego Theme Not Found!" });
+            res.status(500).render("500", { message: "Lego Theme Not Found!" });
         });
     }
     //  If there is not a "theme" query parameter present, respond with all of the unfiltered Lego data 
@@ -70,19 +96,80 @@ app.get("/lego/sets", (req, res) => {
             res.render("sets", { sets: sets });
         })
         .catch(error => {
-            res.status(404).render("404", { message: "Unable to find sets." });
+            res.status(500).render("500", { message: "Unable to find sets." });
         });
     }
 });
 
-// Display JSON of req setNum
+// Display content of req setNum
 app.get("/lego/sets/:setNum", (req, res) => {
     const setNum = req.params.setNum;
     legoSets.getSetByNum(setNum)
     .then(set => {res.render("set", { set });})
     .catch(error => {
-        res.status(404).render("404", { message: "Lego Set Not Found!" });
+        res.status(500).render("500", { message: "Lego Set Not Found!" });
     });
+});
+
+// GET "/lego/addSet"
+app.get('/lego/addSet', async (req, res) => {
+    legoSets.getAllThemes()
+    .then(themes => {
+      res.render('addSet', { themes });
+    })
+    .catch(err => {
+      res.render('500', { message: `I'm sorry, but we have encountered the following error: ${err}` });
+    });
+});
+
+// POST "/lego/addSet"
+app.post('/lego/addSet', (req, res) => {
+    legoSets.addSet(req.body)
+      .then(() => {
+        res.redirect('/lego/sets');
+      })
+      .catch(err => {
+        res.render('500', { message: `I'm sorry, but we have encountered the following error: ${err}` });
+      });
+});
+
+// GET "/lego/editSet/:num"
+app.get('/lego/editSet/:num', (req, res) => {
+    legoSets.getSetByNum(req.params.num)
+        .then(set => {
+            legoSets.getAllThemes()
+                .then(themes => {
+                    res.render('editSet', { set, themes });
+                })
+                .catch(err => {
+                    res.status(404).render("404", { message: err });
+                });
+        })
+        .catch(err => {
+            res.status(404).render("404", { message: err });
+        });
+});
+
+// POST "/lego/editSet"
+app.post('/lego/editSet', (req, res) => {
+    legoSets.editSet(req.body.set_num, req.body)
+    .then(() => {
+        res.redirect('/lego/sets');
+    })
+    .catch(err => {
+        res.render('500', { message: `I'm sorry, but we have encountered the following error: ${err}` });
+    });
+});
+
+// GET "/lego/deleteSet/:num"
+app.get('/lego/deleteSet/:num', (req, res) => {
+    legoSets.deleteSet(req.params.num)
+    .then(() => {
+        res.redirect('/lego/sets');
+    })
+    .catch(err => {
+        res.render("500", { message: `I'm sorry, but we have encountered the following error: ${err}` });
+    })
 });
 
 // Display custom 404 page

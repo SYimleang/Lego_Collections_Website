@@ -36,10 +36,12 @@
                     <%= set.year %>
                     <br>
                     <span class="font-bold">Theme:</span>
-                    <%= set.theme %>
+                    <%= set.Theme.name %>
                     <br>
                     <span class="font-bold">Number of Parts:</span>
                     <%= set.num_parts %>
+                    <br>
+                    <a href="/lego/editSet/<%= set.set_num %>" class="btn btn-success text-black font-bold">Edit</a>
                     <br>
                     <br>
                     "
@@ -52,7 +54,8 @@
                     </span>
                     <br>
                     <br>
-                    <a class="btn btn-primary btn-sm" onclick="history.back(); return false;">
+                    
+                    <a class="btn btn-primary btn-sm text-black font-bold" onclick="history.back(); return false;">
                         RETURN
                     </a>
                 </p>
