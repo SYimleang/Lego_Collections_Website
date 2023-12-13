@@ -67,7 +67,7 @@ const sequelize = new Sequelize(
   });
   
   sequelize
-    .authenticate()
+    .sync()
     .then(() => {
       console.log('Connection has been established successfully.');
     })
