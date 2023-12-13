@@ -59,7 +59,7 @@ const Set = sequelize.define('Set', {
 Set.belongsTo(Theme, { foreignKey: 'theme_id' });
 
 // initialize function
-function Initialize() {
+function initialize() {
     return new Promise(async (resolve, reject) => {
         try {
             await sequelize.sync();
@@ -177,4 +177,4 @@ function deleteSet(set_num){
 }
 
 // Exports all functions.
-module.exports = {Initialize, getAllSets, getSetByNum, getSetsByTheme, addSet, getAllThemes, editSet, deleteSet};
+module.exports = {initialize, getAllSets, getSetByNum, getSetsByTheme, addSet, getAllThemes, editSet, deleteSet};

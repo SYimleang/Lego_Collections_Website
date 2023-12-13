@@ -41,8 +41,10 @@
                     <span class="font-bold">Number of Parts:</span>
                     <%= set.num_parts %>
                     <br>
-                    <a href="/lego/editSet/<%= set.set_num %>" class="btn btn-success text-black font-bold">Edit</a>
-                    <br>
+                    <% if (session.user) { %>
+                        <a href="/lego/editSet/<%= set.set_num %>" class="btn btn-success text-black font-bold">Edit</a>
+                        <br>
+                    <% } %>
                     <br>
                     "
                     <span id="quote-content">Loading...</span>
