@@ -30,7 +30,7 @@ let User = mongoose.model('users', userSchema);
 function initialize() {
   return new Promise((resolve, reject) => {
 
-    let db = mongoose.createConnection("mongodb+srv://syimleang:Framilly2706@cluster0.4dbvt86.mongodb.net/?retryWrites=true&w=majority");
+    let db = mongoose.createConnection(process.env.MONGODB);
 
     db.on('error', (err) => {
       reject(err);

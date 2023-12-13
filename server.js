@@ -55,10 +55,10 @@ authData.initialize();
 
 // set up sequelize to point to our postgres database
 const sequelize = new Sequelize(
-    'SenecaDB', 
-    'SYimleang', 
-    'ET0qngXaA4vH', {
-        host: 'ep-yellow-salad-27925306.us-east-2.aws.neon.tech',
+    process.env.DB_DATABASE, 
+    process.env.DB_USER, 
+    process.env.DB_PASSWORD, {
+        host: process.env.DB_HOST,
         dialect: 'postgres',
         port: 5432,
         dialectOptions: {
