@@ -58,7 +58,7 @@ const sequelize = new Sequelize(
     'SenecaDB', 
     'SYimleang', 
     'ET0qngXaA4vH', {
-        host: 'ep-yellow-salad-27925306-pooler.us-east-2.aws.neon.tech',
+        host: 'ep-yellow-salad-27925306.us-east-2.aws.neon.tech',
         dialect: 'postgres',
         port: 5432,
         dialectOptions: {
