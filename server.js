@@ -18,7 +18,6 @@ const express = require("express"); // "require" the Express module
 const bodyParser = require('body-parser');
 const path = require('path');
 const Sequelize = require('sequelize');
-const mongoose = require('mongoose');
 const clientSessions = require('client-sessions');
 require('dotenv').config();
 
