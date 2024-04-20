@@ -1,81 +1,88 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title><%= set.name %></title>
-    <link rel="stylesheet" href="/css/main.css">
-</head>
-<body tabindex="-1">
+    <link rel="stylesheet" href="/css/main.css" />
+  </head>
+  <body tabindex="-1">
     <!-- Nav bar -->
     <%- include('partials/navbar', { page: '' }) %>
 
     <!-- Contents -->
     <div class="container mx-auto mt-4">
-        <div class="hero bg-blue-800 rounded-lg p-6">
-          <div class="hero-content text-center">
-            <div class="max-w-md">
-              <h1 class="text-5xl font-bold"><%= set.name %></h1>
-              <p class="py-6">
-                Below, you will find detailed information about the set: <%= set.name %> 
-              </p>
-            </div>
+      <div class="hero bg-blue-800 rounded-lg p-6">
+        <div class="hero-content text-center">
+          <div class="max-w-md">
+            <h1 class="text-5xl font-bold"><%= set.name %></h1>
+            <p class="py-6">
+              Below, you will find detailed information about the set: <%=
+              set.name %>
+            </p>
           </div>
         </div>
-        <br>
-        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-            <div>
-                <img class=" rounded-lg" src="<%= set.img_url %>" alt="set image"/>
-            </div>
-            <div class="prose">
-                <p>
-                    <span class="font-bold">Set Name:</span>
-                    <%= set.name %>
-                    <br>
-                    <span class="font-bold">Year Released:</span>
-                    <%= set.year %>
-                    <br>
-                    <span class="font-bold">Theme:</span>
-                    <%= set.Theme.name %>
-                    <br>
-                    <span class="font-bold">Number of Parts:</span>
-                    <%= set.num_parts %>
-                    <br>
-                    <% if (session.user) { %>
-                        <a href="/lego/editSet/<%= set.set_num %>" class="btn btn-success text-black font-bold">Edit</a>
-                        <br>
-                    <% } %>
-                    <br>
-                    "
-                    <span id="quote-content">Loading...</span>
-                    "
-                    <br>
-                    - 
-                    <em><span id="quote-author">Author</span></em>
+      </div>
+      <br />
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+        <div>
+          <img class="rounded-lg" src="<%= set.img_url %>" alt="set image" />
+        </div>
+        <div class="prose">
+          <p>
+            <span class="font-bold">Set Name:</span>
+            <%= set.name %>
+            <br />
+            <span class="font-bold">Year Released:</span>
+            <%= set.year %>
+            <br />
+            <span class="font-bold">Theme:</span>
+            <%= set.Theme.name %>
+            <br />
+            <span class="font-bold">Number of Parts:</span>
+            <%= set.num_parts %>
+            <br />
+            <% if (session.user) { %>
+            <a
+              href="/lego/editSet/<%= set.set_num %>"
+              class="btn btn-success text-black font-bold"
+              >Edit</a
+            >
+            <br />
+            <% } %>
+            <br />
+            "
+            <span id="quote-content">Loading...</span>
+            "
+            <br />
+            -
+            <em><span id="quote-author">Author</span></em>
 
-                    </span>
-                    <br>
-                    <br>
-                    
-                    <a class="btn btn-primary btn-sm text-black font-bold" onclick="history.back(); return false;">
-                        RETURN
-                    </a>
-                </p>
-            </div>
+            <br />
+            <br />
+
+            <a
+              class="btn btn-primary btn-sm text-black font-bold"
+              onclick="history.back(); return false;"
+            >
+              RETURN
+            </a>
+          </p>
+        </div>
       </div>
     </div>
     <!-- JavaScript for fetching a random quote -->
     <script>
-        document.addEventListener("DOMContentLoaded", () => {
-            fetch('https://quotable.io/random')
-                .then(response => response.json())
-                .then(data => {
-                    const quoteContent = document.getElementById('quote-content');
-                    const quoteAuthor = document.getElementById('quote-author');
-                    quoteContent.textContent = data.content;
-                    quoteAuthor.textContent = data.author;
-                });
-        });
+      document.addEventListener("DOMContentLoaded", () => {
+        fetch("https://quotable.io/random")
+          .then((response) => response.json())
+          .then((data) => {
+            const quoteContent = document.getElementById("quote-content");
+            const quoteAuthor = document.getElementById("quote-author");
+            quoteContent.textContent = data.content;
+            quoteAuthor.textContent = data.author;
+          });
+      });
     </script>
-</body>
+  </body>
 </html>

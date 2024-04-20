@@ -1,49 +1,47 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Lego Collection</title>
-    <link rel="stylesheet" href="/css/main.css">
-</head>
+    <link rel="stylesheet" href="/css/main.css" />
+  </head>
 
-<body tabindex="-1">
+  <body tabindex="-1">
     <!-- Nav bar -->
     <%- include('partials/navbar', {page: '/'}) %>
 
     <!-- Container part -->
     <div class="container mx-auto mt-8">
-        <div class="bg-blue-800 p-4 rounded-lg shadow-lg">
-            <div class="hero text-center">
-                <div class="max-w-md">
-                    <h1 class="text-5xl font-bold"><%= session.user.userName %></h1>
-                    <p class="py-6">User History: <%= session.user.email %></p>
-                </div>
-            </div>
+      <div class="bg-blue-800 p-4 rounded-lg shadow-lg">
+        <div class="hero text-center">
+          <div class="max-w-md">
+            <h1 class="text-5xl font-bold"><%= session.user.userName %></h1>
+            <p class="py-6">User History: <%= session.user.email %></p>
+          </div>
         </div>
-        <br>
-        <div class="hero">
-          
-          <!-- User History Table -->
-          <table class="table">
-            <thead>
-              <tr>
-                <th>Login Date/Time</th>
-                <th>Client Information</th>
-              </tr>
-            </thead>
-            <tbody>
-              <% if (session.user && session.user.loginHistory) {
-                session.user.loginHistory.forEach(history => { %>
-                  <tr>
-                    <td><%= history.dateTime %></td>
-                    <td><%= history.userAgent %></td>
-                  </tr>
-                <% });
-              } %>
-            </tbody>
-          </table>
+      </div>
+      <br />
+      <div class="hero">
+        <!-- User History Table -->
+        <table class="table">
+          <thead>
+            <tr>
+              <th>Login Date/Time</th>
+              <th>Client Information</th>
+            </tr>
+          </thead>
+          <tbody>
+            <% if (session.user && session.user.loginHistory) {
+            session.user.loginHistory.forEach(history => { %>
+            <tr>
+              <td><%= history.dateTime %></td>
+              <td><%= history.userAgent %></td>
+            </tr>
+            <% }); } %>
+          </tbody>
+        </table>
+      </div>
     </div>
-
-</body>
+  </body>
 </html>

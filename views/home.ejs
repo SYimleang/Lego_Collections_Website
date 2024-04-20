@@ -1,71 +1,106 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Lego Collection</title>
-    <link rel="stylesheet" href="/css/main.css">
-</head>
+    <link rel="stylesheet" href="/css/main.css" />
+  </head>
 
-<body tabindex="-1">
+  <body tabindex="-1">
     <!-- Nav bar -->
     <%- include('partials/navbar', {page: '/'}) %>
 
     <!-- Container part -->
     <div class="container mx-auto mt-8">
-        <div class="bg-blue-800 p-4 rounded-lg shadow-lg">
-            <h1 class="text-3xl font-semibold">Explore Our Lego Collection</h1>
-            <p class="mt-2 text-lg">Find your favorite Lego sets and start building your dreams!</p>
-            <a href="/lego/sets" class="mt-4 btn">Explore Now</a>
+      <div class="bg-blue-800 p-4 rounded-lg shadow-lg">
+        <h1 class="text-3xl font-semibold">Explore Our Lego Collection</h1>
+        <p class="mt-2 text-lg">
+          Find your favorite Lego sets and start building your dreams!
+        </p>
+        <a href="/lego/sets" class="mt-4 btn">Explore Now</a>
+      </div>
+      <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6 mt-8">
+        <!-- Card 1 -->
+        <div class="card bg-blue-800 rounded-lg shadow-lg">
+          <figure class="px-10 pt-10">
+            <img
+              src="https://cdn.rebrickable.com/media/sets/70204-1.jpg"
+              alt="Lego Set CHI Worriz"
+              class="rounded-xl"
+            />
+          </figure>
+
+          <div class="p-4">
+            <h2 class="text-xl font-semibold">
+              Lego Set CHI Worriz
+              <div class="badge badge-secondary">NEW</div>
+            </h2>
+            <p class="mt-2">
+              There are 26 parts in this inventory, with 55 total quantity. The
+              approximate cost of these parts is CA$33.83
+            </p>
+            <br />
+            <button
+              class="btn btn-active btn-accent"
+              onclick="window.location.href='/lego/sets/70204-1';"
+            >
+              Details
+            </button>
+          </div>
         </div>
-        <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6 mt-8">
 
-            <!-- Card 1 -->
-            <div class="card bg-blue-800 rounded-lg shadow-lg">
-                <figure class="px-10 pt-10">
-                    <img src="https://cdn.rebrickable.com/media/sets/70204-1.jpg" alt="Lego Set CHI Worriz" class="rounded-xl">
-                </figure>
-                
-                <div class="p-4">
-                    <h2 class="text-xl font-semibold">
-                        Lego Set CHI Worriz
-                        <div class="badge badge-secondary">NEW</div>
-                    </h2>
-                    <p class="mt-2">There are 26 parts in this inventory, with 55 total quantity. The approximate cost of these parts is CA$33.83</p>
-                    <br>
-                    <button class="btn btn-active btn-accent" onclick="window.location.href='/lego/sets/70204-1';">Details</button>
-                </div>
-            </div>
-
-            <!-- Card 2 -->
-            <div class="card bg-blue-800 rounded-lg shadow-lg">
-                <figure class="px-10 pt-10">
-                    <img src="https://cdn.rebrickable.com/media/sets/70222-1.jpg" alt="Tormak's Shadow Blazer" class="rounded-xl">
-                </figure>
-                <div class="p-4">
-                    <h2 class="text-xl font-semibold">Tormak's Shadow Blazer</h2>
-                    <p class="mt-2">There are 153 parts in this inventory, with 291 total quantity. The approximate cost of these parts is CA$39.33</p>
-                    <br>
-                    <button class="btn btn-active btn-accent" onclick="window.location.href='/lego/sets/70222-1';">Details</button>
-                </div>
-            </div>
-
-            <!-- Card 3 -->
-            <div class="card bg-blue-800 rounded-lg shadow-lg">
-                <figure class="px-10 pt-10">
-                    <img src="https://cdn.rebrickable.com/media/sets/70314-1.jpg" alt="Beast Master's Chaos Chariot" class="rounded-xl">
-                </figure>
-                
-                <div class="p-4">
-                    <h2 class="text-xl font-semibold">Beast Master's Chaos Chariot</h2>
-                    <p class="mt-2">There are 119 parts in this inventory, with 303 total quantity. The approximate cost of these parts is CA$52.33</p>
-                    <br>
-                    <button class="btn btn-active btn-accent" onclick="window.location.href='/lego/sets/70314-1';">Details</button>
-                </div>
-            </div>
-
+        <!-- Card 2 -->
+        <div class="card bg-blue-800 rounded-lg shadow-lg">
+          <figure class="px-10 pt-10">
+            <img
+              src="https://cdn.rebrickable.com/media/sets/70222-1.jpg"
+              alt="Tormak's Shadow Blazer"
+              class="rounded-xl"
+            />
+          </figure>
+          <div class="p-4">
+            <h2 class="text-xl font-semibold">Tormak's Shadow Blazer</h2>
+            <p class="mt-2">
+              There are 153 parts in this inventory, with 291 total quantity.
+              The approximate cost of these parts is CA$39.33
+            </p>
+            <br />
+            <button
+              class="btn btn-active btn-accent"
+              onclick="window.location.href='/lego/sets/70222-1';"
+            >
+              Details
+            </button>
+          </div>
         </div>
+
+        <!-- Card 3 -->
+        <div class="card bg-blue-800 rounded-lg shadow-lg">
+          <figure class="px-10 pt-10">
+            <img
+              src="https://cdn.rebrickable.com/media/sets/70314-1.jpg"
+              alt="Beast Master's Chaos Chariot"
+              class="rounded-xl"
+            />
+          </figure>
+
+          <div class="p-4">
+            <h2 class="text-xl font-semibold">Beast Master's Chaos Chariot</h2>
+            <p class="mt-2">
+              There are 119 parts in this inventory, with 303 total quantity.
+              The approximate cost of these parts is CA$52.33
+            </p>
+            <br />
+            <button
+              class="btn btn-active btn-accent"
+              onclick="window.location.href='/lego/sets/70314-1';"
+            >
+              Details
+            </button>
+          </div>
+        </div>
+      </div>
     </div>
-
-</body>
+  </body>
 </html>
