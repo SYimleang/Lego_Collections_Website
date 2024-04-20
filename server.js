@@ -1,18 +1,3 @@
-/********************************************************************************
-
-* WEB322 – Assignment 06
-* 
-* I declare that this assignment is my own work in accordance with Seneca's
-* Academic Integrity Policy:
-* 
-* https://www.senecacollege.ca/about/policies/academic-integrity-policy.html
-* 
-* Name: Sasawat Yimleang Student ID: 114036221 Date: December 13, 2023
-*
-* Published URL: https://calm-gold-moose-shoe.cyclic.app
-*
-********************************************************************************/
-
 const HTTP_PORT = process.env.PORT || 3000; // assign a port
 const express = require("express"); // "require" the Express module
 const bodyParser = require("body-parser");
